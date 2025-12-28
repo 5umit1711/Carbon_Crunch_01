@@ -1,13 +1,15 @@
 import express from "express";
+import dotevn from "dotenv";
 import connectDB from "./db/db.js";
 import ingestRoute from "./routes/ingest.js";
 import aggregate from "./services/aggregator.js";
 
 const app = express();
+dotevn.config();
 app.use(express.json());
 app.use(express.static("public"));
 
-const PORT = 8080;
+const PORT = 8080 || process.env.PORT;
 
 const startServer = async () => {
   try {
